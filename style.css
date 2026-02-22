@@ -198,7 +198,7 @@ main {
     transition: .2s ease-out;
 }
 
-.description {
+.description, .technical {
     padding: 60px 0;
     background: white;
 }
@@ -212,15 +212,15 @@ main {
     padding: 60px 0;
 }
 
-.description h2, .work-description h2 {
+.description h2, .technical h2, .work-description h2 {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.description p, .work-description p {
+.description p, .technical p, .work-description p {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .steps {
