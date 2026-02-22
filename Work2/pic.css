@@ -1,0 +1,151 @@
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.picture {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at 50% 60%, #c8d9ff 0%, #4f5aff 90%);
+
+    position: relative;
+}
+
+.grass {
+    position: absolute;
+
+    display: flex;
+    bottom: 8px;
+    left: 15px;
+    right: 15px;
+}
+
+.grass div {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    height: 48px;
+    background: #3dff4a;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+
+    margin-inline: -10px;
+}
+
+.mushroom {
+    position: absolute;
+    bottom: 15px;
+    left: 4px;
+}
+
+.mushroom.small {
+    bottom: -10px;
+    left: 55px;
+    transform: scale(0.7) rotate(35deg);
+}
+
+.cap {
+    position: relative;
+    bottom: -40px;
+    width: 95px;
+    height: 50px;
+    background: radial-gradient(circle at 60% 30%, #e8d7cc 0%, #56181a 70%);
+    border-radius: 45px 45px 0 0;
+}
+
+.stem {
+    background: #d1c9c7;
+    border: 2px solid #56181a;
+
+    width: 32px;
+    height: 100px;
+    border-radius: 50%;
+
+    margin: 0 auto;
+}
+
+.butterfly {
+    position: absolute;
+    transform: rotate(60deg);
+    top: 70px;
+    right: 50px;
+}
+
+.wing {
+    width: 40px;
+    height: 12px;
+    background: #6783ef;
+    border-radius: 50%;
+    position: absolute;
+    border: solid 2px #3e52c8;
+}
+
+.wing.lefttop {
+    left: -20px;
+    top: -8px;
+    transform: rotate(20deg);
+}
+
+.wing.righttop {
+    right: -20px;
+    top: -8px;
+    transform: rotate(-20deg);
+}
+
+.wing.leftbot {
+    left: -20px;
+    bottom: -8px;
+    transform: rotate(-20deg);
+}
+
+.wing.rightbot {
+    right: -20px;
+    bottom: -8px;
+    transform: rotate(20deg);
+}
+
+.body {
+    width: 40px;
+    height: 12px;
+
+    background: #ffde59;
+    border: 1px solid #c39e00;
+
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(90deg);
+    z-index: 1;
+}
+
+.head {
+    width: 16px;
+    height: 16px;
+    bottom: -20px;
+
+    background: #ffde59;
+    border: 1px solid #c39e00;
+
+    border-radius: 16px;
+    position: absolute;
+    right: 12px;
+    z-index: 2;
+}
+
+.head.eye {
+    width: 5px;
+    height: 5px;
+    bottom: 5px;
+    border: none;
+    border-radius: 50%;
+    background: #000000;
+    z-index: 3;
+}
+
+.eye.left {
+    left: 2px;
+}
+
+.eye.right {
+    right: 2px;
+}

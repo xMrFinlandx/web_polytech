@@ -1,0 +1,43 @@
+.puzzle-area {
+    width: 600px;
+    height: 360px;
+    border: 2px solid black;
+    position: relative;
+    margin: 8px auto;
+    overflow: hidden;
+    background-color: #d6d6d6;
+
+    border-radius: 10px;
+}
+
+.piece {
+    width: 60px;
+    height: 60px;
+
+    position: absolute;
+    cursor: grab;
+    user-select: none;
+    transition: transform .3s;
+}
+
+@keyframes puzzleCompleteAnimation {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.07);}
+    100% {transform: scale(1);}
+}
+
+.puzzle-area.completed {
+    animation: puzzleCompleteAnimation 1s ease infinite;
+    background-color: #85ff8d;
+    pointer-events: none;
+    cursor: default;
+}
+
+p {
+    margin: 0;
+}
+
+.text {
+    text-align: left;
+    font-size: 12px;
+}

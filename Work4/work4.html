@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="header-left">
+            <img class="logo-image" src="../icons/icon_empty.png"></img>
+            <h1 class="logo">World Graph Editor</h1>
+        </div>
+
+        <nav class="header-right">
+            <div class="dropdown">
+                <button class="dropdown-btn">Работы ▾</button>
+                <div class="dropdown-content">
+                    <a href="../index.html">1 работа</a>
+                    <a href="../Work2/work2.html">2 работа</a>
+                    <a href="../Work3/work3.html">3 работа</a>
+                    <a href="../Work4/work4.html">4 работа</a>
+                    <a href="../Work5/work5.html">5 работа</a>
+                    <a href="#">Курсовая работа</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section class="work-description">
+        <h2>DOM</h2>
+        <p>На странице в части content создайте таблицу с заголовочной строкой: латинский язык, русский язык и кнопку.
+            По нажатию на кнопку "Создать" создается новая строка. В каждый столбец добавляется фраза на латинском или русском языке.
+        </p>
+    </section>
+
+<section class="work-container">
+
+<div class="content">
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Латинский язык</th>
+            <th>Русский язык</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="buttons">
+    <button id = "createButton">Создать</button>
+    <button id = "recolorButton">Перекрасить</button>
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 World Graph Editor</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

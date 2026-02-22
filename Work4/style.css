@@ -1,0 +1,58 @@
+.class1
+{
+    background-color: #cabfd7;
+}
+
+.description
+{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.class2
+{
+    background-color: #f9d3b4;
+}
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th
+{
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #000000;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tbody td{
+    border: 1px solid #000000;
+    padding-left: 8px;
+}
+
+.buttons {
+    width: 100%;
+    padding: 6px;
+    gap: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7d1b3;
+}
+
+.buttons button:hover {
+    background-color: #ddb99d;
+    scale: 1.1;
+    transition: 0.05s;
+}
