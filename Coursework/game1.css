@@ -1,0 +1,79 @@
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+#gameGrid {
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 4px;
+    width: fit-content;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #f0f0f0;
+    border: 1px solid #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.sidePanel {
+    width: 200px;
+}
+
+#components {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.component {
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 2px solid transparent;
+    cursor: pointer;
+
+    border-radius: 10px;
+}
+.component.selected {
+    border: 2px solid blue;
+}
+
+.element {
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.correct {
+    background-color: #b6ffb6;
+}
+
+.wrong {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}

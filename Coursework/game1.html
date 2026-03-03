@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Собери цепь</title>
+    <link rel="stylesheet" href="game1.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="header-left">
+            <img class="logo-image" src="../icons/icon_empty.png"></img>
+            <h1 class="logo">World Graph Editor</h1>
+        </div>
+
+        <nav class="header-right">
+            <div class="dropdown">
+                <button class="dropdown-btn">Работы ▾</button>
+                <div class="dropdown-content">
+                    <a href="../index.html">1 работа</a>
+                    <a href="../Work2/work2.html">2 работа</a>
+                    <a href="../Work3/work3.html">3 работа</a>
+                    <a href="../Work4/work4.html">4 работа</a>
+                    <a href="../Work5/work5.html">5 работа</a>
+                    <a href="#">Курсовая работа</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section class="work-container">
+        <h2>Уровень <span id="level"></span></h2>
+
+<div class="top-panel">
+    <span>Время: <span id="timer">-</span></span>
+    <span>Очки: <span id="score">-</span></span>
+    <button id="finishBtn">Завершить</button>
+</div>
+
+<div class="layout">
+
+    <div id="gameGrid"></div>
+
+    <div class="sidePanel">
+        <h3>Компоненты</h3>
+        <div id="components"></div>
+    </div>
+
+</div>
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 World Graph Editor</p>
+    </div>
+</footer>
+
+<script src="game1.js"></script>
+
+</body>
+</html>
