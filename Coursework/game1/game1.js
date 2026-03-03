@@ -36,8 +36,11 @@ const baseConnections = {
 
 
 onload = function () {
-    document.getElementById("finishBtn").addEventListener("click", () => {
-        window.location.href = "../main.html";
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            exitToMainMenu();
+        }
     });
 
     startGame();
@@ -138,6 +141,7 @@ function createComponents() {
         div.classList.add("component");
         div.style.backgroundImage = `url(${comp.image})`;
         div.dataset.type = comp.type;
+        div.style.animationDelay = `${Math.random()}s`;
 
         div.addEventListener("dblclick", selectComponent);
 
@@ -206,12 +210,9 @@ function rotatePlacedElement(e) {
 
 function startTimer() {
     timerInterval = setInterval(() => {
+
         time--;
-
         score -= levels[currentLevel].timerPenalty;
-
-        if (score < 0)
-            score = 0;
 
         refreshStats();
 
@@ -224,6 +225,9 @@ function startTimer() {
 
 function refreshStats()
 {
+    if (score < 0)
+        score = 0;
+
     document.getElementById("timer").textContent = time;
     document.getElementById("score").textContent = score;
 }
@@ -419,5 +423,9 @@ function endGame() {
     data[name].lastPlayed = new Date().toLocaleDateString();
     localStorage.setItem("data", JSON.stringify(data));
     window.location.href = "../rating.html";
+}
+
+function exitToMainMenu() {
+    window.location.href = "../main.html";
 }
 

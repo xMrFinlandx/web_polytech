@@ -15,8 +15,8 @@ body {
 .cell {
     width: 80px;
     height: 80px;
-    background: #f0f0f0;
-    border: 1px solid #aaa;
+    background: #e8e8e8;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,18 @@ body {
 #components {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+
+    border-radius: 5px;
+    background: #e8e8e8;
+}
+
+@keyframes floatShake {
+    0%   { transform: translate(0px, 0px) rotate(0deg); }
+    25%  { transform: translate(5px, -5px) rotate(-5deg); }
+    50%  { transform: translate(-5px, 5px) rotate(5deg); }
+    75%  { transform: translate(5px, 5px) rotate(-5deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 .component {
@@ -44,10 +55,13 @@ body {
     height: 70px;
     background-size: contain;
     background-repeat: no-repeat;
-    border: 2px solid transparent;
     cursor: pointer;
 
-    border-radius: 10px;
+    margin: 20px;
+
+    border-radius: 15px;
+
+    animation: floatShake 2s infinite ease-in-out;
 }
 .component.selected {
     border: 2px solid blue;
