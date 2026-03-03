@@ -1,0 +1,30 @@
+.bulbs {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px;
+}
+
+.bulb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #444;
+    transition: 0.3s;
+}
+
+.bulb.on {
+    background: gold;
+    box-shadow: 0 0 20px gold;
+}
+
+.switches {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.switch-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}

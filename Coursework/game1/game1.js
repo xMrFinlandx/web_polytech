@@ -34,10 +34,8 @@ const baseConnections = {
     "lamp_on": ["bottom"]
 };
 
-
 onload = function () {
     document.addEventListener("keydown", function (event) {
-
         if (event.key === "Escape") {
             exitToMainMenu();
         }
