@@ -36,7 +36,9 @@ const baseConnections = {
 
 
 onload = function () {
-    document.getElementById("finishBtn").addEventListener("click", endGame);
+    document.getElementById("finishBtn").addEventListener("click", () => {
+        window.location.href = "../main.html";
+    });
 
     startGame();
 }
@@ -51,7 +53,6 @@ startGame = function () {
     startTimer();
 
     createComponents();
-
     refreshStats();
 }
 
@@ -124,8 +125,6 @@ function selectComponent(e) {
         .forEach(c => c.classList.remove("selected"));
 
     selectedComponent = e.currentTarget.dataset.type;
-
-        console.log(selectedComponent);
 
     e.currentTarget.classList.add("selected");
 }
@@ -208,9 +207,13 @@ function rotatePlacedElement(e) {
 function startTimer() {
     timerInterval = setInterval(() => {
         time--;
+
         score -= levels[currentLevel].timerPenalty;
 
-    refreshStats();
+        if (score < 0)
+            score = 0;
+
+        refreshStats();
 
         if (time <= 0) {
             clearInterval(timerInterval);
@@ -395,9 +398,26 @@ function highlightCorrect() {
 }
 
 function endGame() {
-    alert("Игра окончена! Очки: " + score);
-    localStorage.setItem("lastScore", score);
-    window.location.href = "rating.html";
-}
 
+    const name = localStorage.getItem("currentUser");
+    const selectedGame = localStorage.getItem("selectedGame");
+
+    let data = JSON.parse(localStorage.getItem("data")) || {};
+
+    if (!data[name]) {
+        data[name] = {
+            game1: 0,
+            game2: 0,
+            game3: 0,
+            lastPlayed: ""
+        };
+    }
+
+    data[name][`game${selectedGame}`] =
+        Math.max(data[name][`game${selectedGame}`], score);
+
+    data[name].lastPlayed = new Date().toLocaleDateString();
+    localStorage.setItem("data", JSON.stringify(data));
+    window.location.href = "../rating.html";
+}
 
