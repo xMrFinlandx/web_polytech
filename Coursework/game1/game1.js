@@ -14,10 +14,9 @@ let currentLevel = 1;
 let isLevelActive = true;
 
 const levels = {
-    1: {gridSize: 10, lamps: 1, replacePenalty: 250, timerPenalty: 50},
-    2: {gridSize: 10, lamps: 10, replacePenalty: 500, timerPenalty: 25},
-    3: {gridSize: 10, lamps: 15, replacePenalty: 750, timerPenalty: 10},
-    4: {gridSize: 10, lamps: 20, replacePenalty: 750, timerPenalty: 10},
+    1: {gridSize: 5, lamps: 1, replacePenalty: 250, timerPenalty: 50},
+    2: {gridSize: 6, lamps: 2, replacePenalty: 500, timerPenalty: 25},
+    3: {gridSize: 6, lamps: 4, replacePenalty: 750, timerPenalty: 10},
 }
 
 const componentsList = [
@@ -45,9 +44,15 @@ onload = function () {
     startGame();
 }
 
+function refreshLevel()
+{
+    document.getElementById("level").textContent = `${currentLevel}/${Object.keys(levels).length}`;
+}
+
 startGame = function () {
 
-    document.getElementById("level").textContent = currentLevel;
+    refreshLevel();
+
     score = maxScore;
     time = maxTime;
 
@@ -350,12 +355,12 @@ function checkCircuit() {
 
 function nextLevel() {
 
-    if (currentLevel < 4)
+    if (currentLevel < Object.keys(levels).length)
     {
         isLevelActive = true;
 
         currentLevel++;
-        document.getElementById("level").textContent = currentLevel;
+        refreshLevel();
         createGrid();
     }
     else

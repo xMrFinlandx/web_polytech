@@ -19,6 +19,11 @@ function exitToMainMenu() {
     window.location.href = "../main.html";
 }
 
+function refreshLevel()
+{
+    document.getElementById("level").textContent = `${currentLevel}/${Object.keys(levels).length}`;
+}
+
 onload = function () {
     document.addEventListener("keydown", function (event) {
 
@@ -31,8 +36,9 @@ onload = function () {
 }
 
 startGame = function () {
-
     currentLevel = 1;
+
+    refreshLevel();
     generateTask();
     startTimer();
 }
@@ -52,17 +58,17 @@ function generateTask() {
 
     if (target === "U") {
         correctAnswer = +(I * R).toFixed(2);
-        questionText = `Дано: I = ${I}A, R = ${R}Ω. Найдите U \nU = I x R`;
+        questionText = `Дано: I = ${I}A, R = ${R}Ω. Найдите U. \nU = I x R`;
     }
 
     if (target === "I") {
         correctAnswer = +(U / R).toFixed(2);
-        questionText = `Дано: U = ${U}V, R = ${R}Ω. Найдите I \nI = U / R`;
+        questionText = `Дано: U = ${U}V, R = ${R}Ω. Найдите I. \nI = U / R`;
     }
 
     if (target === "R") {
         correctAnswer = +(U / I).toFixed(2);
-        questionText = `Дано: U = ${U}V, I = ${I}A. Найдите R \nR = U / I`;
+        questionText = `Дано: U = ${U}V, I = ${I}A. Найдите R. \nR = U / I`;
     }
 
     document.getElementById("taskText").innerText = questionText;
@@ -110,21 +116,22 @@ function generateAnswers() {
 
 function checkAnswer(selected) {
 
-    console.log(currentLevel, 5);
-
-
     if (selected === correctAnswer) {
-
-        currentLevel++;
         score += levels[currentLevel].reward;
 
-        if(currentLevel === 5) {
+        if (currentLevel < Object.keys(levels).length) {
+
+            currentLevel++;
+            refreshLevel();
+
+            refreshStats();
+            generateTask();
+        }
+        else
+        {
             endGame();
-            return;
         }
 
-        refreshStats();
-        generateTask();
     } else {
 
         score -= levels[currentLevel].penalty;
