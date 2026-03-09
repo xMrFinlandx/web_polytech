@@ -15,27 +15,16 @@ const levels = {
     5: {answers: 6, penalty: 375, reward: 500},
 };
 
-function exitToMainMenu() {
-    window.location.href = "../main.html";
-}
-
 function refreshLevel()
 {
     document.getElementById("level").textContent = `${currentLevel}/${Object.keys(levels).length}`;
 }
 
 onload = function () {
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-            exitToMainMenu();
-        }
-    });
-
     startGame();
 }
 
-startGame = function () {
+function startGame() {
     currentLevel = 1;
 
     refreshLevel();
@@ -119,18 +108,7 @@ function checkAnswer(selected) {
     if (selected === correctAnswer) {
         score += levels[currentLevel].reward;
 
-        if (currentLevel < Object.keys(levels).length) {
-
-            currentLevel++;
-            refreshLevel();
-
-            refreshStats();
-            generateTask();
-        }
-        else
-        {
-            endGame();
-        }
+        nextLevel();
 
     } else {
 
@@ -139,28 +117,20 @@ function checkAnswer(selected) {
     }
 }
 
-function endGame() {
+function nextLevel() {
 
-    const name = localStorage.getItem("currentUser");
-    const selectedGame = localStorage.getItem("selectedGame");
+    if (currentLevel < Object.keys(levels).length) {
 
-    let data = JSON.parse(localStorage.getItem("data")) || {};
+        currentLevel++;
+        refreshLevel();
 
-    if (!data[name]) {
-        data[name] = {
-            game1: 0,
-            game2: 0,
-            game3: 0,
-            lastPlayed: ""
-        };
+        refreshStats();
+        generateTask();
     }
-
-    data[name][`game${selectedGame}`] =
-        Math.max(data[name][`game${selectedGame}`], score);
-
-    data[name].lastPlayed = new Date().toLocaleDateString();
-    localStorage.setItem("data", JSON.stringify(data));
-    window.location.href = "../rating.html";
+    else
+    {
+        endGame();
+    }
 }
 
 function startTimer() {

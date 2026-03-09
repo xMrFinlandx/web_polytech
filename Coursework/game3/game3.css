@@ -24,7 +24,29 @@
     justify-content: center;
 }
 
+.switch-btn:hover {
+    scale: 1.1;
+    transition: 0.1s;
+}
+
 .switch-btn {
-    padding: 10px 20px;
+    padding: 15px 30px;
     cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px ;
+    font-weight: bold;
+
+    background: #444;
+    color: white;
+
+    transition: 0.1s;
+}
+
+.switch-btn.active {
+    background: gold;
+    color: black;
+    box-shadow: 0 0 20px gold;
+
+    transition: 0.1s;
 }

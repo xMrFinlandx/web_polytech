@@ -1,17 +1,27 @@
 let bulbs = [];
 let switches = [];
 let score = 5000;
+let scoreStep = 10;
+let time = 120;
 
+let switchButtons = [];
+let switchStates = [];
 let currentLevel = 1;
+
+let isLevelActive;
 
 levels = {
     1: {bulbsCount: 5, switchesCound: 3, reward: 100},
-    2: {bulbsCount: 6, switchesCound: 4, reward: 200},
-    3: {bulbsCount: 7, switchesCound: 5, reward: 300},
+    2: {bulbsCount: 5, switchesCound: 3, reward: 100},
+    3: {bulbsCount: 6, switchesCound: 4, reward: 200},
+    4: {bulbsCount: 6, switchesCound: 4, reward: 200},
+    5: {bulbsCount: 7, switchesCound: 5, reward: 300},
+    6: {bulbsCount: 7, switchesCound: 5, reward: 300},
 }
 
 onload = () => {
     startGame();
+    startTimer();
 };
 
 function refreshLevel()
@@ -20,7 +30,6 @@ function refreshLevel()
 }
 
 function startGame() {
-
     generateConnections();
     generateSolvableState();
 
@@ -28,6 +37,8 @@ function startGame() {
 
     refreshBulbs();
     refreshSwitches();
+
+    isLevelActive = true;
 }
 
 function generateConnections() {
@@ -97,15 +108,31 @@ function refreshSwitches() {
 
         const btn = document.createElement("button");
         btn.classList.add("switch-btn");
-        btn.innerText = `Переключатель ${index + 1}`;
+        btn.innerText = `Вкл. ${index + 1}`;
 
         btn.addEventListener("click", () => toggleSwitch(index));
+
+        switchButtons.push(btn);
 
         container.appendChild(btn);
     });
 }
 
 function toggleSwitch(index) {
+
+    if (!isLevelActive)
+        return;
+
+    switchStates[index] = !switchStates[index];
+
+    if (switchStates[index])
+    {
+        switchButtons[index].classList.add("active")
+    }
+    else
+    {
+        switchButtons[index].classList.remove("active")
+    }
 
     let affected = switches[index];
 
@@ -117,53 +144,57 @@ function toggleSwitch(index) {
     checkWin();
 }
 
+function startTimer() {
+
+    timerInterval = setInterval(() => {
+
+        time--;
+        score -= scoreStep;
+
+        refreshStats();
+
+        if (time <= 0) {
+            clearInterval(timerInterval);
+            endGame();
+        }
+
+    }, 1000);
+}
+
+function refreshStats()
+{
+    if (score < 0)
+        score = 0;
+
+    document.getElementById("timer").textContent = time;
+    document.getElementById("score").textContent = score;
+}
+
 function checkWin() {
 
     let allOn = bulbs.every(state => state === true);
 
     if (allOn) {
 
-        score += 50;
+        isLevelActive = false;
+        score += levels[currentLevel].reward;
         document.getElementById("score").innerText = score;
 
-        console.log("Включены все лампы");
-
-        nextLevel();
+        setTimeout(nextLevel, 1000);
     }
-}
-
-function endGame() {
-
-    const name = localStorage.getItem("currentUser");
-    const selectedGame = localStorage.getItem("selectedGame");
-
-    let data = JSON.parse(localStorage.getItem("data")) || {};
-
-    if (!data[name]) {
-        data[name] = {
-            game1: 0,
-            game2: 0,
-            game3: 0,
-            lastPlayed: ""
-        };
-    }
-
-    data[name][`game${selectedGame}`] =
-        Math.max(data[name][`game${selectedGame}`], score);
-
-    data[name].lastPlayed = new Date().toLocaleDateString();
-    localStorage.setItem("data", JSON.stringify(data));
-    window.location.href = "../rating.html";
 }
 
 function nextLevel()
 {
     console.log(currentLevel);
+    switchButtons = [];
+    switchStates = [];
 
     if (currentLevel < Object.keys(levels).length)
     {
         currentLevel++;
         refreshLevel();
+        refreshStats();
 
         startGame();
     }
