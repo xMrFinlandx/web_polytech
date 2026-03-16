@@ -10,7 +10,7 @@ players.sort((a, b) => {
     return totalB - totalA;
 });
 
-Object.entries(data).forEach(([name, scores], index) => {
+players.forEach(([name, scores], index) => {
 
     const row = document.createElement("tr");
 
@@ -25,7 +25,6 @@ Object.entries(data).forEach(([name, scores], index) => {
 
     tableBody.appendChild(row);
 });
-
 document.getElementById("backBtn")
     .addEventListener("click", () => {
         window.location.href = "main.html";
